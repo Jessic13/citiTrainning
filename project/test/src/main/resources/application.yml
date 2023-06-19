@@ -1,0 +1,32 @@
+server:
+  port: 9099
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/citi?serverTimeZone=GMT%2b8
+    username: myciti
+    password: 123456
+    database: citi
+    mysqlIp: localhost
+    mysqlPort: 3306
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:com/hnu/test/mapper/*.xml
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:com/hnu/test/mapper/*.xml
+
+
+
+
+
+

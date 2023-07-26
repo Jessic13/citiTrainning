@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>非受控组件的应用</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      // 非受控组件的状态在组件自身存储，需要的时候通过ref查询DOM并查找其值
+      class Login extends React.Component {
+        login = () => {
+          alert('name: ' + this.name.value + ' pwd: ' + this.pwd.value);
+        };
+
+        handleSubmit = (event) => {
+          event.preventDefault() // 阻止表单提交
+          const {name,pwd} = this
+          alert('name: ' + name.value + ' pwd: ' + pwd.value)
+        }
+
+        // render() {
+        //   return(
+        //     <div>
+        //       <span>name </span>
+        //       <input ref={c=>this.name=c} type="text"/> &nbsp;
+        //       <span>pwd </span>
+        //       <input ref={c=>this.pwd=c} type="password"/>&nbsp;
+        //       <button onClick={this.login}>login</button>
+        //       </div>
+        //   )
+        // }
+        render() {
+          return (
+            <form onSubmit={this.handleSubmit}>
+              name: <input ref={c=>this.name=c} type="text" placeholder="请输入用户名" name="name"/>
+              pwd: <input ref={c=>this.pwd=c} type="password" placeholder="请输入密码" name="pwd"/>
+              <button>登录</button>
+            </form>
+          );
+        }
+      }
+      ReactDOM.render(<Login />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

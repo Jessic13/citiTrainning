@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>回调ref中回调执行次数的问题</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class Demo extends React.Component {
+
+        state = {weather: false}
+
+        showData = () =>{
+          console.log(this.input1.value)
+        }
+
+        changeWeather =()=>{
+          this.setState({weather:!this.state.weather})
+        }
+
+        render(){
+          // 读取状态
+          const {weather}=this.state
+          return (
+            <div>
+              <h2>today is {weather?'rainy':'hot'}</h2>
+              <input ref={c=>{this.input1=c;console.log('@',c)}} type="text" placeholder="输入数据"/> {/* 回调形式，会在render再渲染的时候c先清空再赋为该dom元素 */}
+              <button onClick={this.showData}>点击显示数据</button>
+              <button onClick={this.changeWeather}>点击改变天气</button></div>
+          )
+        }
+      }
+
+      ReactDOM.render(<Demo/>,document.getElementById('app'))
+    </script>
+  </body>
+</html>

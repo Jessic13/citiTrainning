@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jsx的语法规则</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+      .title {
+        background-color: rgb(162, 162, 197);
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      const myId = 'liyue';
+      const myData = 'nihao';
+      const VDOM = ( 
+        <h1 id={myId} className="title">
+          hello
+          <span style={{ color: 'red' }}>{myData}</span>
+          <input type="text" />
+        </h1>
+      );
+      ReactDOM.render(VDOM, document.getElementById('app'));
+    </script>
+  </body>
+</html>

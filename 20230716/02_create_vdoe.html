@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>使用jsx创建虚拟dom</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      const VDOM = (
+        <h1>
+          hello,react
+          <span>this is a span</span>
+        </h1>
+      );
+      const TDOM = document.getElementById('app');
+      const VDOM2 = <h1>Hello,ly</h1>;
+      ReactDOM.render(VDOM, document.getElementById('app'));
+      debugger;
+    </script>
+  </body>
+</html>

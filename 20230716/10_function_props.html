@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数式props使用</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+</head>
+<body>
+  <div id="test1"></div>
+  <div id="test2"></div>
+  <div id="test3"></div>
+  <div id="test4"></div>
+  <script type="text/babel">
+    // class Person extends React.Component {
+
+      // constructor(props){
+      //   super(props)
+      //   console.log('constructor',props)
+      // }
+
+      // static propTypes = {
+      //   name: PropTypes.string.isRequired,
+      //   sex: PropTypes.string,
+      //   age: PropTypes.number,
+      //   speak: PropTypes.func,
+      // };
+
+      // static defaultProps = {
+      //   sex: '女',
+      //   age: 18,
+      // };
+    //   render() {
+    //     const { name, age, sex } = this.props;
+    //     console.log(this)
+    //     return (
+    //       <ul>
+    //         <li>姓名：{name}</li>
+    //         <li>性别：{sex}</li>
+    //         <li>年龄：{age}</li>
+    //       </ul>
+    //     );
+    //   }
+    // }
+
+    // Person.propTypes = {
+    //   name:PropTypes.string.isRequired,
+    //   sex:PropTypes.string,
+    //   age:PropTypes.number,
+    //   speak:PropTypes.func
+    // }
+
+    // Person.defaultProps = {
+    //   sex:'女',
+    //   age:18
+    // }
+
+      function Person(props){
+        const {name,sex,age}=props
+        return (
+          <ul>
+            <li>姓名：{name}</li>
+            <li>性别：{sex}</li>
+            <li>年龄：{age}</li>
+          </ul>
+        )
+      }
+
+    const p = { name: 'karbly', age: 9, sex: '男' };
+    ReactDOM.render(
+      <Person name="jessic" age={18} sex="女" speak={demo} />,
+      document.getElementById('test1')
+    );
+    ReactDOM.render(
+      <Person name="lucy" age={21} sex="女" />,
+      document.getElementById('test2')
+    );
+    ReactDOM.render(
+      <Person name="jack" age={33} sex="男" />,
+      document.getElementById('test3')
+    );
+    ReactDOM.render(<Person {...p} />, document.getElementById('test4'));
+
+    function demo() {
+      console.log('i say');
+    }
+  </script>
+</body>
+</html>

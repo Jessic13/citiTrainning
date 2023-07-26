@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react生命周期(旧)</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class Add extends React.Component {
+
+        constructor(props){
+          console.log('count----constructor')
+          super(props)
+          this.state = { sum: 0 }
+        }
+
+        add = () => {
+          let {sum} = this.state
+          sum++;
+          this.setState({sum})
+        }
+
+        death = () => {
+          ReactDOM.unmountComponentAtNode(document.getElementById('app'))
+        }
+
+        // 不修改组件状态，强制更新
+        force = () => {
+          this.forceUpdate()
+        }
+      
+        // 组件将要挂载的钩子
+        componentWillMount() {
+          console.log('count----componentWillMount')
+        }
+
+        // 组件挂载完毕的钩子
+        componentDidMount() {
+          console.log('count----componentDidMount')
+        }
+
+        // 组件将要卸载的钩子
+        componentWillUnmount() {
+          console.log('count----componentWillUnmount')
+        }
+
+        // 控制组件更新的“阀门”, 如果不写，react默认返回true
+        shouldComponentUpdate(){
+          console.log('count----shouldComponentUpdate')
+          return false
+        }
+
+        // 组件将要更新的钩子
+        componentWillUpdate(){
+          console.log('count----componentWillUpdate')
+        }
+
+        // 组件更新完毕的钩子
+        componentDidUpdate(){
+          console.log('count----componentDidUpdate')
+        }
+
+        render() {
+          console.log('count----render')
+          let { sum } = this.state;
+          return (
+            <div>
+              <h1>current sum : {sum}</h1>
+              <button onClick={this.add}>click me + 1</button>
+              <button onClick={this.death}>umount component</button>
+              <button onClick={this.force}>force update</button>
+            </div>
+          );
+        }
+      }
+      
+      
+      
+      ReactDOM.render(<Add/>,document.getElementById('app'))
+    </script>
+  </body>
+</html>

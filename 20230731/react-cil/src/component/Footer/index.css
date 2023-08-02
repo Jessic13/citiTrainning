@@ -1,0 +1,46 @@
+.footer {
+  width: 460px;
+  height: 30px;
+  margin: auto;
+  padding: 30px 10px;
+  /* 设为Flex布局以后，子元素的float、clear和vertical-align属性将失效 */
+  display: flex;
+}
+
+.footer-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-box label {
+  margin-left: 8px;
+}
+
+.footer-box input[type=checkbox] {
+  margin: 0;
+}
+
+.footer-btn {
+  /* 在父元素为flex布局下，当前元素靠右 */
+  margin-left: auto;
+  /* 让子元素居中 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-btn button {
+  width: 100px;
+  height: 25px;
+  background-color: rgb(237, 51, 51);
+  border: none;
+  border-radius: 2px;
+  color: white;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.footer-btn button:hover {
+  background-color: rgb(166, 26, 26);
+}

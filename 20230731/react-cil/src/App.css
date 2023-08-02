@@ -1,0 +1,17 @@
+.box {
+  width: 520px;
+  height: 520px;
+  background-color: rgb(247, 250, 255);
+  border: 1px solid grey;
+}
+
+.center-in-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.test {
+  margin: 20px;
+}

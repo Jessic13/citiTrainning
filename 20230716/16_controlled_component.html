@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>非受控组件的应用</title>
+    <title>受控组件的应用</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
@@ -11,7 +11,7 @@
   <body>
     <div id="app"></div>
     <script type="text/babel">
-      // 非受控组件的状态在组件自身存储，需要的时候通过ref查询DOM并查找其值
+      // 受控组件：使 React 的 state 成为“唯一数据源”。渲染表单的 React 组件还控制着用户输入过程中表单发生的操作。被 React 以这种方式控制取值的表单输入元素就叫做“受控组件”
       class Login extends React.Component {
 
         // 使用 onChange 进行双向绑定

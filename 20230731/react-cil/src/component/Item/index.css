@@ -1,0 +1,52 @@
+.item {
+  width: 420px;
+  height: 30px;
+  margin: -1px auto 0px;
+  padding: 5px 10px;
+  /* 设为Flex布局以后，子元素的float、clear和vertical-align属性将失效 */
+  display: flex;
+  border: 1px solid rgb(194, 194, 194);
+  /* border-left: 1px solid rgb(194, 194, 194);
+  border-right: 1px solid rgb(194, 194, 194);
+  border-top: 1px solid rgb(194, 194, 194); */
+  
+  
+}
+
+.item-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-box label {
+  margin-left: 8px;
+}
+
+.item-box input[type=checkbox] {
+  margin: 0;
+}
+
+.item-del {
+  /* 在父元素为flex布局下，当前元素靠右 */
+  margin-left: auto;
+  /* 让子元素居中 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-del button {
+  width: 50px;
+  height: 25px;
+  background-color: rgb(237, 51, 51);
+  border: none;
+  border-radius: 2px;
+  color: white;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.item-del button:hover {
+  background-color: rgb(166, 26, 26);
+}

@@ -1,0 +1,102 @@
+.header {
+  width: 460px;
+  height: 60px;
+  /* border: rgb(122, 184, 122) solid 2px; */
+  /* 默认设置margin: auto可以让块级元素水平居中 auto 默认只会计算左右边距 
+    外层需要设置相对定位或者display为block
+    只对块元素起作用，还要设置width属性*/
+  margin: auto;
+  padding: 10px;
+  /* 在input和button的父级元素上加font-size: 0,可以去掉input和button之间的间隙 */
+  font-size: 0;
+  /* 让子div内容居中 align-items上下居中 justify-content左右居中*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 一个居中的test */
+/* .header-input-box {
+  /* 未解之谜: margin: auto无效，无法居中,盒子套盒子也不行*/
+  /* 内容物左右居中 和下面的align好像是冲突的，并且好像因为vertical-align不起作用，导致内盒子撑满了外盒子*/
+  /* text-align: center; */
+  /* 内容物上下居中 */
+  /* vertical-align: middle;  */
+
+  /* mdn居中方法 */
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+
+
+/* .header-input-box-box {
+  border: black solid 2px;
+  padding: 10px;
+  margin: 10px;
+} */
+
+/* .header div {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+.header input {
+  width: 380px;
+  height: 40px;
+
+  /* border和outline 前者占空间后者不占  */
+  /* border: blue dotted 1px; */
+  /* border: none; */
+
+  /* box-sizing 属性定义了 user agent 应该如何计算一个元素的总宽度和总高度，调整input和button同一高度的重要因素
+  默认值：content-box 一个元素所设置的 width 与 height 只会应用到这个元素的内容区，不包含内容的边框（border）和内边距（padding）
+  border-box width 和 height 属性包括内容，内边距和边框，但不包括外边距 width=border+padding+内容的宽度 */
+  box-sizing: border-box;
+  border: 1px solid green;
+
+  /* outline:  green solid 1px; */
+  /* 字体大小 */
+  font-size: small;
+
+  /* 字体间距 */
+  /* letter-spacing: 1px;  */
+  /* 输入框的文字作为输入框的内容，可以使用padding来调整placeholder位置  上右下左*/
+  padding: 1px 10px;
+
+  /* 和按钮保持一致高度 只对行内元素、行内块元素和表格单元格元素生效*/
+  vertical-align: middle;
+}
+
+.header input:focus {
+  border: 1px solid green;
+  border-radius: 0px;
+
+  /* 黑色的框框是outline 不是border */
+    outline: none;
+}
+
+.header button {
+  /* 按钮大小 */
+  width: 80px;
+  height: 40px;
+
+  /* 文字 */
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+
+  border: none;
+  background-color: green;
+  
+
+  /* vertical-align 用来指定行内元素（inline）或表格单元格（table-cell）元素的垂直对齐方式 
+  调整input和button同一高度的重要因素*/
+  vertical-align: middle;
+  
+}
+
+.header button:hover {
+  color: white;
+  background-color: rgb(46, 180, 46);
+  outline: none;
+}

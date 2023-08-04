@@ -3,14 +3,24 @@ import React, { Component } from 'react'
 import './index.css'
 
 export default class Header extends Component {
-  handleAddBtn = (event) => {
-    this.props.handleAdd({ id: nanoid(), work: this.input.value, done: false })
+  handleAddBtn = (e) => {
+    if (this.input.value) {
+      this.props.handleAdd({
+        id: nanoid(),
+        work: this.input.value,
+        done: false,
+      })
+      this.input.value = ''
+    }
   }
 
-  handleKeyUp = (event) => {
-    let todo = { id: nanoid(), work: this.input.value, done: false }
-    if (event.keyCode === 13) {
-      this.props.handleAdd(todo)
+  handleKeyUp = (e) => {
+    if (e.target.value) {
+      let todo = { id: nanoid(), work: this.input.value, done: false }
+      if (e.keyCode === 13) {
+        this.props.handleAdd(todo)
+        e.target.value = ''
+      }
     }
   }
 

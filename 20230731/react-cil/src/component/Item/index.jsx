@@ -2,14 +2,43 @@ import React, { Component } from 'react'
 import './index.css'
 
 export default class Item extends Component {
+  state = { isMouseOver: false }
+
+  // 取消、勾选的回调
   handleCheck = (e) => {
-    console.log(e.target.checked)
+    let todo = this.props.todo
+    todo.done = e.target.checked
+    this.props.handleChecked(todo)
+  }
+
+  // 点击删除的回调
+  handleDel = () => {
+    if (window.confirm('确认删除该项吗')) {
+      let todo = this.props.todo
+      this.props.handleDel(todo)
+    }
+  }
+
+  handleMouseOver = (e) => {
+    e.preventDefault()
+    this.setState({ isMouseOver: true })
+  }
+
+  handleMouseLeave = (e) => {
+    e.preventDefault()
+    this.setState({ isMouseOver: false })
   }
 
   render() {
     let todo = this.props.todo
+    let { isMouseOver } = this.state
     return (
-      <div className="item">
+      <div
+        className="item"
+        onMouseOver={this.handleMouseOver}
+        onMouseLeave={this.handleMouseLeave}
+        style={{ backgroundColor: isMouseOver ? 'lightgrey' : '' }}
+      >
         <div className="item-box">
           <input
             type="checkbox"
@@ -19,8 +48,11 @@ export default class Item extends Component {
           ></input>
           <label htmlFor={todo.id}>{todo.work}</label>
         </div>
-        <div className="item-del">
-          <button>删除</button>
+        <div
+          className="item-del"
+          style={{ display: isMouseOver ? 'block' : 'none' }}
+        >
+          <button onClick={this.handleDel}>删除</button>
         </div>
       </div>
     )

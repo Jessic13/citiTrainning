@@ -21,11 +21,36 @@ export default class App extends Component {
     this.setState({ todoLists: newList })
   }
 
+  // 修改勾选项
+  handleChecked = (newTodo) => {
+    let todoList = this.state.todoLists
+    let newList = todoList.filter((todo) => {
+      if (todo.id === newTodo.id) {
+        todo.done = newTodo.done
+      }
+      return todo
+    })
+    this.setState({ todoList: newList })
+  }
+
+  // 删除item
+  handleDel = (newTodo) => {
+    let todoList = this.state.todoLists
+    let newList = todoList.filter((todo) => {
+      return todo.id !== newTodo.id
+    })
+    this.setState({ todoLists: newList })
+  }
+
   render() {
     return (
       <div className="background box center-in-center">
         <Header handleAdd={this.handleAdd} />
-        <List todoLists={this.state.todoLists} />
+        <List
+          todoLists={this.state.todoLists}
+          handleChecked={this.handleChecked}
+          handleDel={this.handleDel}
+        />
         <Footer />
       </div>
     )

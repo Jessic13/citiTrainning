@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types'
 import React, { Component } from 'react'
 import './index.css'
 
@@ -19,6 +20,7 @@ export default class Item extends Component {
     }
   }
 
+  // 鼠标移入移出改变样式的回调
   handleMouseOver = (e) => {
     e.preventDefault()
     this.setState({ isMouseOver: true })
@@ -57,4 +59,10 @@ export default class Item extends Component {
       </div>
     )
   }
+}
+
+Item.propTypes = {
+  todo: PropTypes.object.isRequired,
+  handleChecked: PropTypes.func.isRequired,
+  handleDel: PropTypes.func.isRequired,
 }

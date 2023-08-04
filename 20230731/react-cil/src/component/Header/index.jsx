@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid'
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import './index.css'
 
@@ -39,4 +40,8 @@ export default class Header extends Component {
       </div>
     )
   }
+}
+
+Header.propTypes = {
+  handleAdd: PropTypes.func.isRequired,
 }

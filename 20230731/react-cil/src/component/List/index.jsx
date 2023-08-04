@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types'
 import React, { Component } from 'react'
 import Item from './../Item/index'
 import './index.css'
@@ -19,11 +20,11 @@ export default class List extends Component {
 
     return (
       <div className="list">
-        {todoLists.map((todoList) => {
+        {todoLists.map((todo) => {
           return (
             <Item
-              key={todoList.id}
-              todo={todoList}
+              key={todo.id}
+              todo={todo}
               handleChecked={this.handleChecked}
               handleDel={this.handleDel}
             />
@@ -32,4 +33,10 @@ export default class List extends Component {
       </div>
     )
   }
+}
+
+List.propTypes = {
+  todoLists: PropTypes.array.isRequired,
+  handleChecked: PropTypes.func.isRequired,
+  handleDel: PropTypes.func.isRequired,
 }

@@ -13,6 +13,7 @@ export default class App extends Component {
       { id: 2, work: '学习', done: true },
       { id: 3, work: '睡觉', done: false },
     ],
+    isCheckedAll: false,
   }
 
   // 添加项
@@ -23,14 +24,23 @@ export default class App extends Component {
 
   // 修改勾选项
   handleChecked = (newTodo) => {
-    let todoList = this.state.todoLists
-    let newList = todoList.filter((todo) => {
+    let { todoLists } = this.state
+    let newList = todoLists.filter((todo) => {
       if (todo.id === newTodo.id) {
         todo.done = newTodo.done
       }
       return todo
     })
     this.setState({ todoList: newList })
+    // 关联全选项
+    let sum = todoLists.reduce((prev, cur) => {
+      return prev + (cur.done ? 1 : 0)
+    }, 0)
+    if (sum === todoLists.length) {
+      this.setState({ isCheckedAll: true })
+    } else {
+      this.setState({ isCheckedAll: false })
+    }
   }
 
   // 删除item
@@ -38,6 +48,25 @@ export default class App extends Component {
     let todoList = this.state.todoLists
     let newList = todoList.filter((todo) => {
       return todo.id !== newTodo.id
+    })
+    this.setState({ todoLists: newList })
+  }
+
+  // 勾选、取消全部
+  handleCheckAll = (isChecked) => {
+    let todoLists = this.state.todoLists
+    let newList = todoLists.filter((todo) => {
+      todo.done = isChecked
+      return todo
+    })
+    this.setState({ todoLists: newList, isCheckedAll: isChecked })
+  }
+
+  // 删除已完成
+  handleDelDone = (donelist) => {
+    let todoLists = this.state.todoLists
+    let newList = todoLists.filter((todo) => {
+      return todo.done === false
     })
     this.setState({ todoLists: newList })
   }
@@ -51,7 +80,12 @@ export default class App extends Component {
           handleChecked={this.handleChecked}
           handleDel={this.handleDel}
         />
-        <Footer />
+        <Footer
+          todoLists={this.state.todoLists}
+          isCheckedAll={this.state.isCheckedAll}
+          handleCheckAll={this.handleCheckAll}
+          handleDelDone={this.handleDelDone}
+        />
       </div>
     )
   }

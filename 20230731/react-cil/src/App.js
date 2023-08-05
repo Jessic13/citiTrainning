@@ -44,10 +44,19 @@ export default class App extends Component {
   }
 
   // 删除item
-  handleDel = (newTodo) => {
+  // handleDel = (newTodo) => {
+  //   let todoList = this.state.todoLists
+  //   let newList = todoList.filter((todo) => {
+  //     return todo.id !== newTodo.id
+  //   })
+  //   this.setState({ todoLists: newList })
+  // }
+
+  // 优化：只传id 不传完整对象
+  handleDel = (id) => {
     let todoList = this.state.todoLists
     let newList = todoList.filter((todo) => {
-      return todo.id !== newTodo.id
+      return todo.id !== id
     })
     this.setState({ todoLists: newList })
   }

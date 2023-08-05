@@ -13,48 +13,62 @@ export default class Item extends Component {
   }
 
   // 点击删除的回调
-  handleDel = () => {
+  // handleDel = () => {
+  //   if (window.confirm('确认删除该项吗')) {
+  //     let todo = this.props.todo
+  //     this.props.handleDel(todo)
+  //   }
+  // }
+
+  // 优化：点击删除的回调,只传id项
+  handleDel = (id) => {
     if (window.confirm('确认删除该项吗')) {
-      let todo = this.props.todo
-      this.props.handleDel(todo)
+      this.props.handleDel(id)
     }
   }
 
   // 鼠标移入移出改变样式的回调
-  handleMouseOver = (e) => {
-    e.preventDefault()
-    this.setState({ isMouseOver: true })
-  }
+  // handleMouseOver = (e) => {
+  //   e.preventDefault()
+  //   this.setState({ isMouseOver: true })
+  // }
 
-  handleMouseLeave = (e) => {
-    e.preventDefault()
-    this.setState({ isMouseOver: false })
+  // handleMouseLeave = (e) => {
+  //   e.preventDefault()
+  //   this.setState({ isMouseOver: false })
+  // }
+
+  // 优化:鼠标移入移出——使用高阶函数：柯里化函数
+  handleMouse = (flag) => {
+    return () => {
+      this.setState({ isMouseOver: flag })
+    }
   }
 
   render() {
-    let todo = this.props.todo
+    let { id, work, done } = this.props.todo
     let { isMouseOver } = this.state
     return (
       <div
         className="item"
-        onMouseOver={this.handleMouseOver}
-        onMouseLeave={this.handleMouseLeave}
+        onMouseOver={this.handleMouse(true)}
+        onMouseLeave={this.handleMouse(false)}
         style={{ backgroundColor: isMouseOver ? 'lightgrey' : '' }}
       >
         <div className="item-box">
           <input
             type="checkbox"
-            id={todo.id}
-            checked={todo.done ? true : false}
+            id={id}
+            checked={done ? true : false}
             onChange={this.handleCheck}
           ></input>
-          <label htmlFor={todo.id}>{todo.work}</label>
+          <label htmlFor={id}>{work}</label>
         </div>
         <div
           className="item-del"
           style={{ display: isMouseOver ? 'block' : 'none' }}
         >
-          <button onClick={this.handleDel}>删除</button>
+          <button onClick={() => this.handleDel(id)}>删除</button>
         </div>
       </div>
     )

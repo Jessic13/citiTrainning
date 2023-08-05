@@ -5,13 +5,14 @@ import './index.css'
 export default class Footer extends Component {
   state = { isCheckedAll: this.props.isCheckedAll }
   // 计算已完成的item
-  countFinish = () => {
-    let todoLists = this.props.todoLists
-    let sum = todoLists.reduce((prev, cur) => {
-      return prev + (cur.done ? 1 : 0)
-    }, 0)
-    return sum
-  }
+  // 优化：不使用函数，直接在render里面进行计算，更快
+  // countFinish = () => {
+  //   let todoLists = this.props.todoLists
+  //   let sum = todoLists.reduce((prev, cur) => {
+  //     return prev + (cur.done ? 1 : 0)
+  //   }, 0)
+  //   return sum
+  // }
 
   // 勾选 取消 全部
   handleCheckAll = (e) => {
@@ -33,6 +34,10 @@ export default class Footer extends Component {
 
   render() {
     let { todoLists, isCheckedAll } = this.props
+    const total = todoLists.length
+    const doneCount = todoLists.reduce((prev, cur) => {
+      return prev + (cur.done ? 1 : 0)
+    }, 0)
     return (
       <div className="footer">
         <div className="footer-box">
@@ -43,7 +48,7 @@ export default class Footer extends Component {
             checked={isCheckedAll}
           />
           <label htmlFor="checkedAll">
-            已完成{this.countFinish()} / 全部{todoLists.length}
+            已完成{doneCount} / 全部{total}
           </label>
         </div>
         <div className="footer-btn">

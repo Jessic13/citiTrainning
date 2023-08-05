@@ -15,9 +15,10 @@ export default class Header extends Component {
     }
   }
 
+  // 优化：此处并不需要给input绑定ref，onKeyUp事件可以获取到e.target.value 即input值
   handleKeyUp = (e) => {
     if (e.target.value) {
-      let todo = { id: nanoid(), work: this.input.value, done: false }
+      let todo = { id: nanoid(), work: e.target.value, done: false }
       if (e.keyCode === 13) {
         this.props.handleAdd(todo)
         e.target.value = ''

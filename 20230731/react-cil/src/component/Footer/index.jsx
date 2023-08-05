@@ -33,7 +33,7 @@ export default class Footer extends Component {
   }
 
   render() {
-    let { todoLists, isCheckedAll } = this.props
+    let { todoLists } = this.props
     const total = todoLists.length
     const doneCount = todoLists.reduce((prev, cur) => {
       return prev + (cur.done ? 1 : 0)
@@ -45,7 +45,7 @@ export default class Footer extends Component {
             id="checkedAll"
             type="checkbox"
             onChange={this.handleCheckAll}
-            checked={isCheckedAll}
+            checked={total === doneCount && total !== 0 ? true : false}
           />
           <label htmlFor="checkedAll">
             已完成{doneCount} / 全部{total}
@@ -61,7 +61,6 @@ export default class Footer extends Component {
 
 Footer.propTypes = {
   todoLists: PropTypes.array.isRequired,
-  isCheckedAll: PropTypes.bool.isRequired,
   handleCheckAll: PropTypes.func.isRequired,
   handleDelDone: PropTypes.func.isRequired,
 }

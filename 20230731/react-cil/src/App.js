@@ -32,15 +32,6 @@ export default class App extends Component {
       return todo
     })
     this.setState({ todoList: newList })
-    // 关联全选项
-    let sum = todoLists.reduce((prev, cur) => {
-      return prev + (cur.done ? 1 : 0)
-    }, 0)
-    if (sum === todoLists.length) {
-      this.setState({ isCheckedAll: true })
-    } else {
-      this.setState({ isCheckedAll: false })
-    }
   }
 
   // 删除item
@@ -62,13 +53,14 @@ export default class App extends Component {
   }
 
   // 勾选、取消全部
+  // filter 函数可以用map
   handleCheckAll = (isChecked) => {
     let todoLists = this.state.todoLists
     let newList = todoLists.filter((todo) => {
       todo.done = isChecked
       return todo
     })
-    this.setState({ todoLists: newList, isCheckedAll: isChecked })
+    this.setState({ todoLists: newList })
   }
 
   // 删除已完成
@@ -91,7 +83,6 @@ export default class App extends Component {
         />
         <Footer
           todoLists={this.state.todoLists}
-          isCheckedAll={this.state.isCheckedAll}
           handleCheckAll={this.handleCheckAll}
           handleDelDone={this.handleDelDone}
         />

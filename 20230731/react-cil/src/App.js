@@ -74,7 +74,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="background box center-in-center">
+      <div className="box center-in-center">
         <Header handleAdd={this.handleAdd} />
         <List
           todoLists={this.state.todoLists}

@@ -1,14 +1,24 @@
+import React, { Component } from 'react'
 import './App.css'
 import List from './component//List'
 import Search from './component/Search'
 
-function App() {
-  return (
-    <div className="container center box">
-      <Search></Search>
-      <List></List>
-    </div>
-  )
-}
+export default class App extends Component {
+  state = {
+    users: [],
+  }
 
-export default App
+  saveUsers = (users) => {
+    this.setState({ users: users })
+    console.log(this.users)
+  }
+  render() {
+    return (
+      <div className="container">
+        <Search saveUsers={this.saveUsers} />
+
+        <List users={this.users} />
+      </div>
+    )
+  }
+}
